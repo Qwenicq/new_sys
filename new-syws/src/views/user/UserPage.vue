@@ -25,6 +25,11 @@ if (userInfo.State_3 === 'true') {
 } else {
   state.value = '暂无'
 }
+
+const viewportHeight = window.innerHeight // 获取视窗的高度
+const pixelValue = 5 // 像素值
+const vhValue = (pixelValue / viewportHeight) * 100 // 将像素转换为 vh
+console.log(vhValue + 'vh') // 输出结果
 </script>
 
 <template>
@@ -40,8 +45,10 @@ if (userInfo.State_3 === 'true') {
       <span>电话：{{ userInfo.Phone }}</span>
       <span>方向：{{ userInfo.Direction }}</span>
       <span>面试状态：{{ state }}</span>
-      <van-button type="primary" @click="logoutFn">退出登录</van-button>
-      <van-button type="primary" @click="changeInfoFn" style="margin: 16px"
+      <van-button type="primary" @click="logoutFn" class="btn"
+        >退出登录</van-button
+      >
+      <van-button type="primary" @click="changeInfoFn" class="btn btn-r"
         >修改信息</van-button
       >
     </div>
@@ -49,6 +56,10 @@ if (userInfo.State_3 === 'true') {
 </template>
 
 <style scoped>
+* {
+  margin: 0;
+  padding: 0;
+}
 .BGC {
   font-family: 'STKaiti', '华文楷体', sans-serif;
   position: relative;
@@ -68,8 +79,9 @@ if (userInfo.State_3 === 'true') {
 }
 .main {
   position: absolute;
-  left: 30%;
-  top: 25%;
+  left: 50%; /* 将盒子的左侧边缘放置在父元素的水平中心位置 */
+  top: 50%; /* 将盒子的顶部边缘放置在父元素的垂直中心位置 */
+  transform: translate(-50%, -50%); /* 使用 transform 属性进行水平和垂直居中 */
 }
 h1 {
   display: flex;
@@ -81,12 +93,20 @@ p {
   display: inline-block;
 }
 img {
+  padding-left: 4.1469194312796205vh;
   width: 20%;
 }
 span {
   display: block;
   font-weight: 700;
-  font-size: 25px;
-  margin-bottom: 5px;
+  font-size: 2.962085308056872vh;
+  margin-bottom: 0.5924170616113744vh;
+}
+.btn {
+  width: 9.47867298578199vh;
+}
+
+.btn-r {
+  margin-left: 1.7772511848341233vh;
 }
 </style>

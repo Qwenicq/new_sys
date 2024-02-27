@@ -20,8 +20,8 @@ const router = createRouter({
         },
         {
           path: '/index/user',
-          component: () => import('@/views/user/UserPage.vue'),
-          meta: { requiresAuth: true }
+          component: () => import('@/views/user/UserPage.vue')
+          // meta: { requiresAuth: true }
         }
       ]
     },
@@ -38,7 +38,7 @@ const router = createRouter({
     { path: '/web', component: () => import('@/views/detail/WebPage.vue') },
     {
       path: '/setting',
-      // meta: { requiresAuth: true },
+      meta: { requiresAuth: true },
       component: () => import('@/views/user/UserSetting.vue')
     },
     { path: '/admin', component: () => import('@/views/admin/AdminPage.vue') }
