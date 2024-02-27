@@ -1,0 +1,94 @@
+<script setup>
+import { ref } from 'vue'
+const result = ref('')
+const showPicker = ref(false)
+const columns = [
+  { text: '为定向', value: 'null' },
+  { text: 'Web', value: 'Web' },
+  { text: 'Server', value: 'Server' },
+  { text: 'Ios', value: 'Ios' },
+  { text: 'Android', value: 'Android' }
+]
+
+const onConfirm = ({ selectedOptions }) => {
+  result.value = selectedOptions[0]?.text
+  showPicker.value = false
+}
+</script>
+
+<template>
+  <div class="bg">
+    <div class="main">
+      <h1>注册</h1>
+      <van-form @submit="onSubmit">
+        <van-cell-group inset>
+          <van-field
+            v-model="username"
+            name="姓名"
+            label="姓名"
+            placeholder="姓名"
+            :rules="[{ required: true, message: '请填写姓名' }]"
+          />
+
+          <van-field
+            v-model="Identity"
+            type="number"
+            name="学号"
+            label="学号"
+            placeholder="学号"
+            :rules="[{ required: true, message: '请填写学号' }]"
+          />
+          <van-field
+            v-model="QQ"
+            type="number"
+            name="QQ"
+            label="QQ"
+            placeholder="QQ"
+            :rules="[{ required: true, message: '请填写QQ' }]"
+          />
+
+          <van-field
+            v-model="result"
+            is-link
+            readonly
+            name="picker"
+            label="选择方向"
+            placeholder="点击选择方向"
+            @click="showPicker = true"
+          />
+          <van-popup v-model:show="showPicker" position="bottom">
+            <van-picker
+              :columns="columns"
+              @confirm="onConfirm"
+              @cancel="showPicker = false"
+            />
+          </van-popup>
+          <van-field
+            v-model="password"
+            type="password"
+            name="密码"
+            label="密码"
+            placeholder="密码"
+            :rules="[{ required: true, message: '请填写密码' }]"
+          />
+          <van-field
+            v-model="repassword"
+            type="password"
+            name="确认密码"
+            label="确认密码"
+            placeholder="确认密码"
+            :rules="[{ required: true, message: '请填写密码' }]"
+          />
+        </van-cell-group>
+
+        <div style="margin: 16px">
+          <van-button round block type="primary" native-type="submit">
+            提交
+          </van-button>
+        </div>
+      </van-form>
+    </div>
+  </div>
+</template>
+
+<style scoped></style>
